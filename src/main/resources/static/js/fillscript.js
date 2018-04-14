@@ -1,6 +1,5 @@
 function fillMap(map) {
     var marker;
-    console.info('test');
     marker = new google.maps.Marker({
         position: { lat: 60.90262003187983, lng:10.283203125 },
         map: map,

@@ -94,7 +94,6 @@ function placeMarker(location) {
     });
     console.info(marker.getPosition().lat());
     console.info(marker.getPosition().lng());
-    console.info('test');
     $('#startPoint').val(marker.getPosition().lat());
     $('#destination').val(marker.getPosition().lng());
     
