@@ -80,36 +80,7 @@ function initMap() {
     map= new google.maps.Map(document.getElementById('map'), myOptions);
     map.mapTypes.set('custom', customMapType);
     map.setMapTypeId('custom');
-    marker = new google.maps.Marker({
-        position: { lat: 60.90262003187983, lng: 10.283203125 },
-        map: map,
-        title: 'Hello World!',
-        draggable: true
-    });
-    marker = new google.maps.Marker({
-        position: { lat: 10.283203125, lng: -2.548828125 },
-        map: map,
-        title: 'Hello World!',
-        draggable: true
-    });
-    marker = new google.maps.Marker({
-        position: { lat: 29.178946061598406, lng: 5.888671875 },
-        map: map,
-        title: 'Hello World!',
-        draggable: true
-    });
-    marker = new google.maps.Marker({
-        position: { lat: 10.426153994763697, lng: -6.21573235356891 },
-        map: map,
-        title: 'Hello World!',
-        draggable: true
-    });
-    marker = new google.maps.Marker({
-        position: { lat: -1.5342492974085424, lng: -24.91121198499286 },
-        map: map,
-        title: 'Hello World!',
-        draggable: true
-    });
+    fillMap(map);
     google.maps.event.addListener(map, 'click', function (event) {
 
         placeMarker(event.latLng);
@@ -123,6 +94,7 @@ function placeMarker(location) {
     });
     console.info(marker.getPosition().lat());
     console.info(marker.getPosition().lng());
+    console.info('test');
     $('#startPoint').val(marker.getPosition().lat());
     $('#destination').val(marker.getPosition().lng());
     
