@@ -98,6 +98,12 @@ function initMap() {
         title: 'Hello World!',
         draggable: true
     });
+    marker = new google.maps.Marker({
+        position: { lat: 10.426153994763697, lng: -6.21573235356891 },
+        map: map,
+        title: 'Hello World!',
+        draggable: true
+    });
     google.maps.event.addListener(map, 'click', function (event) {
 
         placeMarker(event.latLng);
