@@ -7,12 +7,13 @@ function fillMap(map) {
         draggable: false
     });
     marker = new google.maps.Marker({
-        position: { lat: 10.283203125, lng: -2.548828125 },
+        position: { lat: 43.751298804563255, lng: -2.9443359375 },
         map: map,
         title: 'Winterfell',
         draggable: false
     });
- 
+    console.log(marker.getPosition().lat());
+    
     marker = new google.maps.Marker({
         position: { lat: 29.178946061598406, lng: 5.888671875 },
         map: map,
