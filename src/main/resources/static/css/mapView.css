@@ -2,9 +2,6 @@ body {
     background-color: gray;
 }
 
-.menu {
-    background-color: #4285f4;
-}
 
 #map {
     width: 100%;
@@ -14,6 +11,7 @@ body {
 
 .map-container {
     height: 600px;
+    margin-top: 200px;
 }
 
 .map-form {
@@ -23,4 +21,7 @@ body {
 .map-wrapper {
     background-color: white;
     height: 550px;
+}
+.separator{
+    height: 100px;
 }
