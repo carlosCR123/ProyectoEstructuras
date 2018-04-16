@@ -9,17 +9,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class WebController {
 	@GetMapping("/")
     public String index(Model model){
-        model.addAttribute("msg","Bienvenidos a westeros");
+        model.addAttribute("title","Inicio");
         return "index";
     }
     @RequestMapping("/westeros")
     public String westerosView(Model model){
-        model.addAttribute("msg","mapa de westeros");
+        model.addAttribute("title","Westeros");
         return "map";
     }
-    @RequestMapping("/members")
+    @RequestMapping("/about")
     public String membersView(Model model){
-        model.addAttribute("msg","miembros del equipo");
-        return "members";
+        model.addAttribute("title","Acerca de");
+        return "about";
     }
 }
