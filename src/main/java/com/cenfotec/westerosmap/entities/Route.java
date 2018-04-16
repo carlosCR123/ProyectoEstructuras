@@ -12,11 +12,12 @@ public class Route {
     @Column(nullable = false)
     private int tripDuration;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "location_one")
     private Location locationOne;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "location_two")
     private Location locationTwo;
 
@@ -51,11 +52,23 @@ public class Route {
         this.locationOne = locationOne;
     }
 
+
     public Location getLocationTwo() {
         return locationTwo;
     }
 
     public void setLocationTwo(Location locationTwo) {
         this.locationTwo = locationTwo;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Route )) return false;
+        return id != null && id.equals(((Route) o).id);
+    }
+    @Override
+    public int hashCode() {
+        return 31;
     }
 }

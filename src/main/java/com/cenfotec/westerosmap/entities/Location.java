@@ -1,9 +1,12 @@
 package com.cenfotec.westerosmap.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
-import java.util.LinkedList;
+import java.util.List;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Location {
 
     @Id
@@ -19,8 +22,8 @@ public class Location {
     @Column(nullable = false)
     private double longitude;
 
-    @OneToMany(mappedBy = "location", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private LinkedList<Route> routes;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Route> routes;
 
     public Location(String name, double latitude, double longitude) {
         this.name = name;
@@ -63,15 +66,13 @@ public class Location {
         this.longitude = longitude;
     }
 
-    public LinkedList<Route> getRoutes() {
+    public List<Route> getRoutes() {
         return routes;
     }
 
-    public void setRoutes(LinkedList<Route> routes) {
+    public void setRoutes(List<Route> routes) {
         this.routes = routes;
     }
 
-    public void setRoute(Route route){
 
-    }
 }
