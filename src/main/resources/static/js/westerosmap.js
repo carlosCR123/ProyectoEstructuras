@@ -73,7 +73,9 @@ function initMap() {
         mapTypeControlOptions: {
             mapTypeIds: ["custom"]
         }
+
     };
+
 
 
     // Init the map and hook our custom map type to it
@@ -115,6 +117,22 @@ function initMap() {
         placeMarker(event.latLng);
     });
 
+
+    var flightPlanCoordinates = [
+        {lat: 60.90262003187983, lng: 10.283203125},
+        {lat: 10.283203125, lng: -2.548828125},
+        {lat: 29.178946061598406, lng: 5.888671875}
+    ];
+    var flightPath = new google.maps.Polyline({
+        path: flightPlanCoordinates,
+        geodesic: true,
+        strokeColor: '#FF0000',
+        strokeOpacity: 1.0,
+        strokeWeight: 2
+    });
+
+    flightPath.setMap(map);
+
 }
 function placeMarker(location) {
     var marker = new google.maps.Marker({
@@ -125,5 +143,9 @@ function placeMarker(location) {
     console.info(marker.getPosition().lng());
     $('#startPoint').val(marker.getPosition().lat());
     $('#destination').val(marker.getPosition().lng());
-    
+
 }
+
+
+
+
