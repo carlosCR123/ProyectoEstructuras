@@ -1,5 +1,7 @@
+/*
 function fillMap(map) {
     var marker;
+
     marker = new google.maps.Marker({
         position: { lat: 60.90262003187983, lng:10.283203125 },
         map: map,
@@ -150,5 +152,58 @@ function fillMap(map) {
         map: map,
         title: 'Oldtown',
         draggable: false
+    });
+
+
+
+}
+*/
+
+var westerosMap;
+function fillMap(map) {
+
+    westerosMap=map;
+
+    marker = new google.maps.Marker({
+        position: { lat: 60.90262003187983, lng:10.283203125 },
+        map: westerosMap,
+        title: 'Castle black',
+        draggable: false
+    });
+    marker = new google.maps.Marker({
+        position: { lat: 43.751298804563255, lng: -2.9443359375 },
+        map: westerosMap,
+        title: 'Winterfell',
+        draggable: false
+    });
+    getRoute();
+}
+function getRoute() {
+    $.ajax({
+        url: 'http://localhost:3377/testRou',
+        data: {
+            format: 'json'
+        },
+        error: function (e) {
+            console.error(e);
+
+        },
+        success: function (data) {
+            fillRoute(data);
+        },
+        type: 'GET'
+    });
+}
+function fillRoute(data) {
+    $.each(data, function (index, value) {
+        var flight = new google.maps.Polyline({
+            path: [ {lat: value.locationOne.latitude, lng:value.locationOne.longitude},{lat: value.locationTwo.latitude, lng:value.locationTwo.longitude}],
+            geodesic: true,
+            strokeColor: '#FF0000',
+            strokeOpacity: 1.0,
+            strokeWeight: 2
+        });
+
+        flight.setMap(westerosMap)
     });
 }
