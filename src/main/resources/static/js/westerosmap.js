@@ -61,39 +61,6 @@ function initMap() {
         placeMarker(event.latLng);
     });
 
-<<<<<<< HEAD
-=======
-/*
-    var flightPlanCoordinates = [
-        {lat: 60.90262003187983, lng: 10.283203125},
-        {lat: 10.283203125, lng: -2.548828125},
-        {lat: 29.178946061598406, lng: 5.888671875}
-    ];
-
-    var flightPlan = [
-        { lat:  -55.00915529806209, lng:  -30.238199714500922},
-        { lat: -39.520651593083336, lng:   1.654074633577693}
-    ];
-    var flightPath = new google.maps.Polyline({
-        path: flightPlanCoordinates,
-        geodesic: true,
-        strokeColor: '#FF0000',
-        strokeOpacity: 1.0,
-        strokeWeight: 2
-    });
-
-    var flight = new google.maps.Polyline({
-        path: flightPlan,
-        geodesic: true,
-        strokeColor: '#FF0000',
-        strokeOpacity: 1.0,
-        strokeWeight: 2
-    });
-
-    flightPath.setMap(map);
-    flight.setMap(map);*/
-
->>>>>>> kevin
 }
 function placeMarker(location) {
     var marker = new google.maps.Marker({
