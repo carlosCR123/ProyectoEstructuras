@@ -24,6 +24,17 @@
         height: 550px;
     }
 
+<<<<<<< HEAD
     .separator {
         height: 50px;
     }
+=======
+.map-wrapper {
+
+    background-color: white;
+    height: 550px;
+}
+.separator{
+    height: 50px;
+}
+>>>>>>> kevin
