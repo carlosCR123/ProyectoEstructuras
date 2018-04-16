@@ -12,7 +12,6 @@ function fillMap(map) {
         title: 'Winterfell',
         draggable: false
     });
-    console.log(marker.getPosition().lat());
     
     marker = new google.maps.Marker({
         position: { lat: 29.178946061598406, lng: 5.888671875 },
