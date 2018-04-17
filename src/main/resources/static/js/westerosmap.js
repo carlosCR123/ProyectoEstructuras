@@ -60,7 +60,6 @@ function initMap() {
 
         placeMarker(event.latLng);
     });
-
 }
 function placeMarker(location) {
     var marker = new google.maps.Marker({

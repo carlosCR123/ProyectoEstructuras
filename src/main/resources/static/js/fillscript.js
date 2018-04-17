@@ -6,6 +6,34 @@ function fillMap(map) {
     getLocations();
     getRoute();
 }
+function getLocations() {
+    $.ajax({
+        url: 'http://localhost:3377/testLoc',
+        data: {
+            format: 'json'
+        },
+        error: function (e) {
+            console.error(e);
+
+        },
+        success: function (data) {
+            fill(data);
+        },
+        type: 'GET'
+    });
+}
+function fill(data) {
+    $.each(data, function (index, value) {
+        var marker;
+        marker = new google.maps.Marker({
+            position: {lat: (value.latitude), lng: (value.longitude)},
+            map: westerosMap,
+            title: value.name,
+            draggable: false
+        });
+    });
+    getRoute();
+}
 function getRoute() {
     $.ajax({
         url: 'http://localhost:3377/testRou',
@@ -32,33 +60,6 @@ function fillRoute(data) {
             strokeWeight: 2
         });
 
-        flight.setMap(westerosMap)
-    });
-}
-function getLocations() {
-    $.ajax({
-        url: 'http://localhost:3377/testLoc',
-        data: {
-            format: 'json'
-        },
-        error: function (e) {
-            console.error(e);
-
-        },
-        success: function (data) {
-            fill(data);
-        },
-        type: 'GET'
-    });
-}
-function fill(data) {
-    $.each(data, function (index, value) {
-        var marker;
-        marker = new google.maps.Marker({
-            position: { lat: (value.latitude), lng: (value.longitude) },
-            map: westerosMap,
-            title: value.name,
-            draggable: false
-        });
+        flight.setMap(westerosMap);
     });
 }
