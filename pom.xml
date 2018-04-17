@@ -44,7 +44,6 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-
 			<groupId>nz.net.ultraq.thymeleaf</groupId>
 			<artifactId>thymeleaf-layout-dialect</artifactId>
 			<version>2.3.0</version>
@@ -54,7 +53,6 @@
 			<artifactId>h2</artifactId>
 		</dependency>
 		<dependency>
-
 			<groupId>org.thymeleaf.extras</groupId>
 			<artifactId>thymeleaf-extras-java8time</artifactId>
 		</dependency>
