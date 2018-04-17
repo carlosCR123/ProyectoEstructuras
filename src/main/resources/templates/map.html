@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" 
-xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
-layout:decorate="~{layouts/layout}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
 
 <head>
     <title th:text="${title}"></title>
@@ -13,7 +11,7 @@ layout:decorate="~{layouts/layout}">
 </head>
 
 <body>
-    
+
     <div layout:fragment="content" class="container ">
         <div class="separator"></div>
         <div class=" map-container">
@@ -32,18 +30,30 @@ layout:decorate="~{layouts/layout}">
                 </div>
 
                 <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 map-form">
-                    <p class="text-center">Mapa de Westeros</p>
-                    <form>
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="startPoint" placeholder="Punto de partida">
+                    <div id="searchPanel">
+                        <form class="input-group">
+                            <input type="text" class="form-control" placeholder="Buscar">
+                            <span class="input-group-btn">
+                                <button class="btn btn-search" type="button">
+                                    <i class="fa fa-search fa-fw"></i>
+                                </button>
+                            </span>
+                        </form>
+                    </div>
+                    <div id="routePanel">
+                        <p class="text-center">Mapa de Westeros</p>
+                        <form class="routeForm">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="startPoint" placeholder="Punto de partida">
 
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="destination" placeholder="Destino">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Obtener ruta</button>
-                    </form>
-                    <p class="text-center locationName"></p>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="destination" placeholder="Destino">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Obtener ruta</button>
+                        </form>
+                        <p class="text-center locationName"></p>
+                    </div>
                 </div>
 
                 <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
@@ -53,7 +63,11 @@ layout:decorate="~{layouts/layout}">
 
         </div>
     </div>
-
+    <script>
+        $('.btn-search').on('click',function () {
+            alert('test');
+        });
+    </script>
 </body>
 
 </html>

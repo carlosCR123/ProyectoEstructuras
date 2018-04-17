@@ -32,6 +32,9 @@ function fill(data) {
             draggable: false,
             icon: '../imgs/Winterfell.png'
         });
+        marker.addListener('click',function () {
+            $('.locationName').text(value.name);
+        })
     });
     getRoute();
 }
