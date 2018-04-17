@@ -58,7 +58,10 @@
 			<artifactId>h2</artifactId>
 		</dependency>
 		<dependency>
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 			<groupId>org.thymeleaf.extras</groupId>
