@@ -19,11 +19,14 @@
     }
 
     .map-wrapper {
-        /* margin-top: 50%; */
         background-color: white;
         height: 550px;
     }
 
     .separator {
         height: 50px;
+    }
+
+    .locationName {
+        margin-top: 30px
     }

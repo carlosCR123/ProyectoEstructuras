@@ -31,8 +31,6 @@ function fill(data) {
             icon: '../imgs/Winterfell.png'
         });
         marker.addListener('click', function () {
-            console.log("test");
-            
             $('.locationName').text(value.name);
         });
     });
