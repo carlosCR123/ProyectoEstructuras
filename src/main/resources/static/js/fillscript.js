@@ -22,11 +22,18 @@ function getLocations() {
 function fill(data) {
     $.each(data, function (index, value) {
         var marker;
+        var image;
         marker = new google.maps.Marker({
             position: { lat: (value.latitude), lng: (value.longitude) },
             map: westerosMap,
             title: value.name,
-            draggable: false
+            draggable: false,
+            icon: '../imgs/Winterfell.png'
+        });
+        marker.addListener('click', function () {
+            console.log("test");
+            
+            $('.locationName').text(value.name);
         });
     });
 }

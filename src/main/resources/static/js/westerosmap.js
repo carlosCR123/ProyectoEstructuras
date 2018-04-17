@@ -1,17 +1,6 @@
-/*
-			 * = PS_Bramus.GoogleMapsTileCutter Config
-			 * ----------------
-			 */
-
 var repeatOnXAxis = false; // Do we need to repeat the image on the X-axis? Most likely you'll want to set this to false
 var marker;
 var map;
-
-
-/*
- * Helper function which normalizes the coords so that tiles can repeat across the X-axis (horizontally) like the standard Google map tiles.
- * ----------------
- */
 
 function getNormalizedCoord(coord, zoom) {
     if (!repeatOnXAxis) return coord;
@@ -19,16 +8,11 @@ function getNormalizedCoord(coord, zoom) {
     var y = coord.y;
     var x = coord.x;
 
-    // tile range in one direction range is dependent on zoom level
-    // 0 = 1 tile, 1 = 2 tiles, 2 = 4 tiles, 3 = 8 tiles, etc
     var tileRange = 1 << zoom;
 
-    // don't repeat across Y-axis (vertically)
     if (y < 0 || y >= tileRange) {
         return null;
     }
-
-    // repeat across X-axis
     if (x < 0 || x >= tileRange) {
         x = (x % tileRange + tileRange) % tileRange;
     }
@@ -40,15 +24,8 @@ function getNormalizedCoord(coord, zoom) {
 
 }
 
-
-/*
- * Main Core
- * ----------------
- */
-
 function initMap() {
 
-    // Define our custom map type
     var customMapType = new google.maps.ImageMapType({
         getTileUrl: function (coord, zoom) {
             var normalizedCoord = getNormalizedCoord(coord, zoom);
@@ -62,8 +39,6 @@ function initMap() {
         maxZoom: 3,
         name: 'PS_Bramus.GoogleMapsTileCutter'
     });
-
-    // Basic options for our map
     var myOptions = {
         center: new google.maps.LatLng(0, 0),
         zoom: 6,
@@ -77,8 +52,6 @@ function initMap() {
     };
 
 
-
-    // Init the map and hook our custom map type to it
     map= new google.maps.Map(document.getElementById('map'), myOptions);
     map.mapTypes.set('custom', customMapType);
     map.setMapTypeId('custom');
@@ -88,22 +61,6 @@ function initMap() {
         placeMarker(event.latLng);
     });
 
-
-    var flightPlanCoordinates = [
-        {lat: 60.90262003187983, lng: 10.283203125},
-        {lat: 10.283203125, lng: -2.548828125},
-        {lat: 29.178946061598406, lng: 5.888671875}
-    ];
-    var flightPath = new google.maps.Polyline({
-        path: flightPlanCoordinates,
-        geodesic: true,
-        strokeColor: '#FF0000',
-        strokeOpacity: 1.0,
-        strokeWeight: 2
-    });
-
-    flightPath.setMap(map);
-
 }
 function placeMarker(location) {
     var marker = new google.maps.Marker({
@@ -112,8 +69,6 @@ function placeMarker(location) {
     });
     console.info(marker.getPosition().lat());
     console.info(marker.getPosition().lng());
-    $('#startPoint').val(marker.getPosition().lat());
-    $('#destination').val(marker.getPosition().lng());
 
 }
 
