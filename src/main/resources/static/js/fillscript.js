@@ -29,7 +29,8 @@ function fill(data) {
             position: {lat: (value.latitude), lng: (value.longitude)},
             map: westerosMap,
             title: value.name,
-            draggable: false
+            draggable: false,
+            icon: '../imgs/Winterfell.png'
         });
     });
     getRoute();
