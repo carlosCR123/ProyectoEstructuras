@@ -5,8 +5,37 @@
 
 <head>
     <title th:text="${title}"></title>
+ <link rel="stylesheet" href="../static/css/about.css" th:href="@{css/about.css}">
 </head>
 <body>
-    <div layout:fragment="content"></div>   
+    <div layout:fragment="content">
+
+
+        <div class="container" id="info">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">Carlos Alvarado Nuñez</div>
+                        <div class="panel-body"><img src="../static/imgs/avatar.jpg" class="img-responsive" style="width:100%" alt="Image" th:src="@{/imgs/avatar.jpg}"></div>
+                        <div class="panel-footer">calvaradon@ucenfotec.ac.cr</div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">Kevin Chaves Vasquez</div>
+                        <div class="panel-body"><img src="../static/imgs/avatar.jpg." class="img-responsive" style="width:100%" alt="Image" th:src="@{/imgs/avatar.jpg}"> </div>
+                        <div class="panel-footer">kchavesv@ucenfotec.ac.cr</div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">Jorge Diaz Alvarado</div>
+                        <div class="panel-body"><img src="../static/imgs/avatar.jpg" class="img-responsive" style="width:100%" alt="Image" th:src="@{/imgs/avatar.jpg}"></div>
+                        <div class="panel-footer">jdiaza1@ucenfotec.ac.cr</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
