@@ -25,7 +25,12 @@ function getNormalizedCoord(coord, zoom) {
 }
 
 function initMap() {
-
+    $('#routePanel').hide();
+    $('.btn-routes').click(function () {
+        $('#searchPanel').hide();
+        $('#routePanel').show();
+        getRoute();
+    });
     var customMapType = new google.maps.ImageMapType({
         getTileUrl: function (coord, zoom) {
             var normalizedCoord = getNormalizedCoord(coord, zoom);
@@ -57,6 +62,7 @@ function initMap() {
     map.setMapTypeId('custom');
     fillMap(map);
 }
+
 
 
 

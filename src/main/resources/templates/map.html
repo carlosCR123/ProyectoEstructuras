@@ -31,17 +31,19 @@
 
                 <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 map-form">
                     <div id="searchPanel">
-                        <form class="input-group">
+                        <p class="text-center locationName">Buscar ciudad</p>
+                        <form class="input-group searchForm">
                             <input type="text" class="form-control" placeholder="Buscar">
                             <span class="input-group-btn">
-                                <button class="btn btn-search" type="button">
+                                <a class="btn btn-search" href="#">
                                     <i class="fa fa-search fa-fw"></i>
-                                </button>
+                                </a>
                             </span>
                         </form>
+                        <a href="#" class="btn-routes text-center" >Ver rutas</a>
                     </div>
                     <div id="routePanel">
-                        <p class="text-center">Mapa de Westeros</p>
+                        <p class="text-center">Buscar ruta</p>
                         <form class="routeForm">
                             <div class="form-group">
                                 <input type="text" class="form-control" id="startPoint" placeholder="Punto de partida">
@@ -50,7 +52,8 @@
                             <div class="form-group">
                                 <input type="text" class="form-control" id="destination" placeholder="Destino">
                             </div>
-                            <button type="submit" class="btn btn-primary">Obtener ruta</button>
+                            <button type="submit" class="btn btn-primary">Buscar</button>
+                            <a href="" class="btn-back">Atras</a>
                         </form>
                         <p class="text-center locationName"></p>
                     </div>
@@ -63,11 +66,6 @@
 
         </div>
     </div>
-    <script>
-        $('.btn-search').on('click',function () {
-            alert('test');
-        });
-    </script>
 </body>
 
 </html>

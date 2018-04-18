@@ -31,7 +31,8 @@
         margin-top: 30px
     }
 
-    .btn-search {
+    .btn-search,
+    btn-searchRoute {
         background: #424242;
         border-radius: 0;
         color: #fff;
@@ -49,4 +50,26 @@
     .btn-search:hover {
         background: #1c1c1c;
         color: #fff;
+    }
+
+    #searchPanel, #routePanel {
+        margin-top: 15px
+    }
+
+    .btn-routes,
+    .btn-back {
+        color: #fff;
+        padding-top: 20px;
+    }
+    .btn-back{
+        margin-right: 5px
+    }
+
+    .btn-routes:hover,
+    .btn-back:hover {
+        color: #fff;
+    }
+
+    .searchForm {
+        margin-bottom: 30px
     }
