@@ -1,10 +1,10 @@
 
 var westerosMap;
+var markers=[];
 function fillMap(map) {
 
     westerosMap=map;
     getLocations();
-    getRoute();
 }
 function getLocations() {
     $.ajax({
@@ -32,8 +32,11 @@ function fill(data) {
             draggable: false,
             icon: '../imgs/Winterfell.png'
         });
+        marker.addListener('click',function () {
+            $('.locationName').text(value.name);
+        });
+        markers.push(marker);
     });
-    getRoute();
 }
 function getRoute() {
     $.ajax({
@@ -63,4 +66,16 @@ function fillRoute(data) {
 
         flight.setMap(westerosMap);
     });
+}
+function setMapOnAll(map) {
+    for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(map);
+    }
+}
+function clearMarkers() {
+    setMapOnAll(null);
+}
+function deleteMarkers() {
+    clearMarkers();
+    markers = [];
 }

@@ -25,7 +25,12 @@ function getNormalizedCoord(coord, zoom) {
 }
 
 function initMap() {
-
+    $('#routePanel').hide();
+    $('.btn-routes').click(function () {
+        $('#searchPanel').hide();
+        $('#routePanel').show();
+        getRoute();
+    });
     var customMapType = new google.maps.ImageMapType({
         getTileUrl: function (coord, zoom) {
             var normalizedCoord = getNormalizedCoord(coord, zoom);
@@ -42,7 +47,7 @@ function initMap() {
     var myOptions = {
         center: new google.maps.LatLng(0, 0),
         zoom: 6,
-        minZoom: 0,
+        minZoom: 2,
         streetViewControl: false,
         mapTypeControl: false,
         mapTypeControlOptions: {
@@ -56,20 +61,9 @@ function initMap() {
     map.mapTypes.set('custom', customMapType);
     map.setMapTypeId('custom');
     fillMap(map);
-    google.maps.event.addListener(map, 'click', function (event) {
-
-        placeMarker(event.latLng);
-    });
 }
-function placeMarker(location) {
-    var marker = new google.maps.Marker({
-        position: location,
-        map: map
-    });
-    console.info(marker.getPosition().lat());
-    console.info(marker.getPosition().lng());
 
-}
+
 
 
 
