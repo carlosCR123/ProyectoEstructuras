@@ -1,26 +1,33 @@
 
 var westerosMap;
 var markers=[];
+var conections=[];
+var test;
 function fillMap(map) {
-
     westerosMap=map;
     getLocations();
 }
 function getLocations() {
-    $.ajax({
-        url: 'http://localhost:3377/testLoc',
-        data: {
-            format: 'json'
-        },
-        error: function (e) {
-            console.error(e);
+    if (markers.length==0) {
+        $.ajax({
+            url: 'http://localhost:3377/testLoc',
+            data: {
+                format: 'json'
+            },
+            error: function (e) {
+                console.error(e);
 
-        },
-        success: function (data) {
-            fill(data);
-        },
-        type: 'GET'
-    });
+            },
+            success: function (data) {
+                fill(data);
+            },
+            type: 'GET'
+        });
+    }else{
+        
+        setMapOnAll(westerosMap)
+    }
+    
 }
 function fill(data) {
     $.each(data, function (index, value) {
@@ -33,26 +40,31 @@ function fill(data) {
             icon: '../imgs/Winterfell.png'
         });
         marker.addListener('click',function () {
-            $('.locationName').text(value.name);
+           $('#location').val(value.name);
         });
         markers.push(marker);
     });
 }
 function getRoute() {
-    $.ajax({
-        url: 'http://localhost:3377/testRou',
-        data: {
-            format: 'json'
-        },
-        error: function (e) {
-            console.error(e);
+    if (conections.length==0) {
+        $.ajax({
+            url: 'http://localhost:3377/testRou',
+            data: {
+                format: 'json'
+            },
+            error: function (e) {
+                console.error(e);
 
-        },
-        success: function (data) {
-            fillRoute(data);
-        },
-        type: 'GET'
-    });
+            },
+            success: function (data) {
+                fillRoute(data);
+            },
+            type: 'GET'
+        });
+    }else{
+        setConectionsOnAll(westerosMap)
+    }
+    
 }
 function fillRoute(data) {
     $.each(data, function (index, value) {
@@ -60,6 +72,20 @@ function fillRoute(data) {
             path: [ {lat: value.locationOne.latitude, lng:value.locationOne.longitude},{lat: value.locationTwo.latitude, lng:value.locationTwo.longitude}],
             geodesic: true,
             strokeColor: '#FF0000',
+            strokeOpacity: 1.0,
+            strokeWeight: 2
+        });
+
+        flight.setMap(westerosMap);
+        conections.push(flight);
+    });
+}
+function printPath(data) {
+    $.each(data, function (index, value) {
+        var flight = new google.maps.Polyline({
+            path: [{ lat: value.locationOne.latitude, lng: value.locationOne.longitude }, { lat: value.locationTwo.latitude, lng: value.locationTwo.longitude }],
+            geodesic: true,
+            strokeColor: '#CCC',
             strokeOpacity: 1.0,
             strokeWeight: 2
         });
@@ -78,4 +104,16 @@ function clearMarkers() {
 function deleteMarkers() {
     clearMarkers();
     markers = [];
+}
+function setConectionsOnAll(map) {
+    for (var i = 0; i < conections.length; i++) {
+        conections[i].setMap(map);
+    }
+}
+function clearConections() {
+    setConectionsOnAll(null);
+}
+function deleteConections() {
+    clearConections();
+    conections = [];
 }
