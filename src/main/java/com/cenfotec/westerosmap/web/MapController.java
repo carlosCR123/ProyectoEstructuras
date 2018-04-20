@@ -2,13 +2,8 @@ package com.cenfotec.westerosmap.web;
 
 import com.cenfotec.westerosmap.entities.Location;
 import com.cenfotec.westerosmap.entities.Route;
-import com.cenfotec.westerosmap.repositories.ILocationRepository;
-import com.cenfotec.westerosmap.repositories.IRouteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
@@ -17,33 +12,44 @@ import java.util.List;
 public class MapController {
 
     @Autowired
-    ILocationRepository locationRepository;
+    MapServiceManager serviceManager;
 
-    @Autowired
-    IRouteRepository routeRepository;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/testLoc")
+
+    @RequestMapping(method = RequestMethod.GET, value = "/allLocations")
     @ResponseBody
     List<Location> getAllLocations(HttpServletResponse res){
-        List<Location> locations = locationRepository.findAll();
-        if(!locations.isEmpty()){
-            return locations;
-        }
+        List<Location> locations = serviceManager.getAllLocations();
+        if (locations != null) return locations;
         res.setStatus(HttpServletResponse.SC_NO_CONTENT);
         return null;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/testRou")
+    @RequestMapping(method = RequestMethod.GET, value = "/allRoutes")
     @ResponseBody
     List<Route> getAllRoutes(HttpServletResponse res){
-        List<Route> routes = routeRepository.findAll();
-        if(!routes.isEmpty()){
-            return routes;
-        }
+        List<Route> routes = serviceManager.getAllRoutes();
+        if(routes != null) return routes;
         res.setStatus(HttpServletResponse.SC_NO_CONTENT);
         return null;
     }
 
+    @RequestMapping(method = RequestMethod.POST, value = "/routesLocation")
+    @ResponseBody
+    List<Route> getRoutesOfLocation(HttpServletResponse res, @RequestBody Location location){
+        List<Route> routes = serviceManager.getRoutesOfLocation(location);
+        if(routes != null) return routes;
+        res.setStatus(HttpServletResponse.SC_NO_CONTENT);
+        return null;
+    }
 
+    @RequestMapping(method = RequestMethod.POST, value = "/neighborLocations")
+    @ResponseBody
+    List<Location> getNeighborLocations(HttpServletResponse res, @RequestBody Location location){
+        List<Location> locations = serviceManager.getNeighborLocations(location);
+        if (locations != null) return locations;
+        res.setStatus(HttpServletResponse.SC_NO_CONTENT);
+        return null;
+    }
 
 }
