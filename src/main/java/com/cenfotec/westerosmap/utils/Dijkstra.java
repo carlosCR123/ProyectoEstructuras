@@ -25,13 +25,12 @@ public class Dijkstra {
         this.distance = null;
     }
 
-    public ArrayList<Map> execute(GraphVertex origin){
+    public HashMap<GraphVertex, GraphVertex> execute(GraphVertex origin){
         GraphVertex current;
         visited = new ArrayList<>();
         unVisited = new ArrayList<>(nodes);
         fillDitanceHashMapWithInitialValues(origin);
         fillPredecessorsWithInitialValues();
-        //updateNodeLists(origin);
         while (unVisited.size() > 0){
             current = findNodeWithSmallestKnownDistanceFromOrigin();
             for (int i = 0; i < current.getArcs().size() ; i++) {
@@ -49,10 +48,7 @@ public class Dijkstra {
             }
             updateNodeLists(current);
         }
-        ArrayList<Map> result = new ArrayList<>();
-        result.add(distance);
-        result.add(predecessors);
-        return result;
+        return predecessors;
     }
 
     private GraphVertex findGraphVertexFromLocation(Location location) {
