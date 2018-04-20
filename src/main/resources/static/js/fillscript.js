@@ -10,7 +10,7 @@ function fillMap(map) {
 function getLocations() {
     if (markers.length==0) {
         $.ajax({
-            url: 'http://localhost:3377/testLoc',
+            url: 'http://localhost:3377/allLocations',
             data: {
                 format: 'json'
             },
@@ -48,7 +48,7 @@ function fill(data) {
 function getRoute() {
     if (conections.length==0) {
         $.ajax({
-            url: 'http://localhost:3377/testRou',
+            url: 'http://localhost:3377/allRoutes',
             data: {
                 format: 'json'
             },
