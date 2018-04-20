@@ -4,13 +4,9 @@ import com.cenfotec.westerosmap.entities.Route;
 
 public class GraphArc {
     private Route data;
-    private GraphVertex origin;
-    private GraphVertex destiny;
 
-    public GraphArc(Route data, GraphVertex successor, GraphVertex predecessor) {
+    public GraphArc(Route data) {
         this.data = data;
-        this.origin = successor;
-        this.destiny = predecessor;
     }
 
     public Route getData() {
@@ -21,19 +17,4 @@ public class GraphArc {
         this.data = data;
     }
 
-    public GraphVertex getOrigin() {
-        return origin;
-    }
-
-    public void setOrigin(GraphVertex origin) {
-        this.origin = origin;
-    }
-
-    public GraphVertex getDestiny() {
-        return destiny;
-    }
-
-    public void setDestiny(GraphVertex destiny) {
-        this.destiny = destiny;
-    }
 }
