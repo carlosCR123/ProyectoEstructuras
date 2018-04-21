@@ -1,6 +1,7 @@
 var repeatOnXAxis = false; // Do we need to repeat the image on the X-axis? Most likely you'll want to set this to false
 var marker;
 var map;
+var pathForm=false;
 window.onload = function () {
     $('.btn-search').click(function () {
         if (searchValidate()) {
@@ -9,8 +10,12 @@ window.onload = function () {
     });
     $('.btn-routes').click(function () {
         $('#location').val('')
+        $('.btn-refresh').removeClass('d-none');
         $('#searchPanel').addClass('d-none');
+        $('.neighbor-panel').addClass('d-none');
         $('#routePanel').removeClass('d-none');
+        clearConections(conections.locationRoutes);
+        pathForm=true;
         getRoute();
     });
     $('.btn-back').click(function () {
@@ -21,20 +26,40 @@ window.onload = function () {
         $('.table-routes-panel').addClass("d-none");
         $('#destination').removeClass("error");
         $('#searchPanel').removeClass('d-none');
+        $('.btn-refresh').addClass('d-none');
         $('#routePanel').addClass('d-none');
-        clearConections()
+        refreshConections();
+        pathForm = false;
+        clearConections(conections.allRoutes)
         getLocations();
     });
     $('.btn-search-route').click(function () {
         if (routeValidate()) {
-            searchRoute($('#startPoint').val(), $('#destination').val())
+            searchRoute($('#startPoint').val(), $('#destination').val());
         }
     });
+    $('.btn-refresh').click(function () {
+        refreshRoutePanel();
+        refreshConections();
+    });
+}
+function refreshRoutePanel() {
+    $('#startPoint').val('');
+    $('#destination').val('');
+    $('#startPoint').removeClass("error");
+    $('.table-routes-panel').addClass("d-none");
+    $('#destination').removeClass("error");
 }
 function routeValidate() {
-    if ($('#startPoint').val() == '' || $('#destination').val()=='') {
+    if ($('#destination').val() == '' && $('#startPoint').val() == '') {
         $('#startPoint').addClass("error");
+        return false;
+    } else if ($('#destination').val() == ''){
         $('#destination').addClass("error");
+        return false;
+    } else if ($('#startPoint').val() == '') {
+        $('#destination').addClass("error");
+        $('#startPoint').addClass("error");
         return false;
     }
     $('#startPoint').removeClass("error");
@@ -52,40 +77,45 @@ function searchValidate() {
 
 }
 function searchLocation(txtLocation) {
-    //TODO
-    // $.ajax({
-    //     url: 'http://localhost:3377/testLoc',
-    //     data: {
-    //         location: txtLocation
-    //     },
-    //     error: function (e) {
-    //         console.error(e);
+    currentLocation=txtLocation;
+    $(".table-neighbor tbody").empty();
+    $('.neighbor-panel').removeClass('d-none');
+    $.ajax({
+        url: 'http://localhost:3377/routesLocation',
+        type: 'POST',
+        data: JSON.stringify({
+            "name": txtLocation
+        }),
+        contentType: "application/json; charset=UTF-8",
+        error: function (e) {
+            console.error(e);
 
-    //     },
-    //     success: function (data) {
-    //         fillLocationRoute(data);
-    //     },
-    //     type: 'POST'
-    // });
+        },
+        success: function (data) {
+            fillRoute(data);
+            
+        }
+    });
 }
 function searchRoute(txtStartPoint,txtDestination) {
-    //TODO
-    // $.ajax({
-    //     url: 'http://localhost:3377/testLoc',
-    //     data: {
-    //         location: txtLocation
-    //     },
-    //     error: function (e) {
-    //         console.error(e);
+    currentLocation = txtStartPoint;
+    $(".table-routes tbody").empty();
+    $('.table-routes-panel').removeClass('d-none');
+    $.ajax({
+        url: 'http://localhost:3377/shortestPath',
+        type: 'POST',
+        data: JSON.stringify([
+            { "name": txtStartPoint }, { "name": txtDestination}
+        ]),
+        contentType: "application/json; charset=UTF-8",
+        error: function (e) {
+            console.error(e);
 
-    //     },
-    //     success: function (data) {
-    //         fillLocationRoute(data);
-    //     },
-    //     type: 'POST'
-    // });
-    //Probando la tabla
-    $('.table-routes-panel').removeClass("d-none");
+        },
+        success: function (data) {
+            printPath(data);
+        }
+    });
     
 }
 function getNormalizedCoord(coord, zoom) {
