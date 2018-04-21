@@ -78,6 +78,7 @@ function searchValidate() {
 }
 function searchLocation(txtLocation) {
     currentLocation=txtLocation;
+    deleteConections(conections.locationRoutes);
     $(".table-neighbor tbody").empty();
     $('.neighbor-panel').removeClass('d-none');
     $.ajax({
@@ -110,7 +111,6 @@ function searchRoute(txtStartPoint,txtDestination) {
         contentType: "application/json; charset=UTF-8",
         error: function (e) {
             console.error(e);
-
         },
         success: function (data) {
             printPath(data);

@@ -180,3 +180,7 @@ function setConectionsOnAll(linesArray, map) {
 function clearConections(linesArray) {
     setConectionsOnAll(linesArray, null);
 }
+function deleteConections(array) {
+    clearConections(array);
+    array=[];
+}
