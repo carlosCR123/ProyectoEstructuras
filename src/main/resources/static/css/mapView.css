@@ -86,17 +86,27 @@
         overflow: auto
     }
 
-    .table-routes {
+    .table-routes,
+    .table-neighbor {
         color: #1c1c1c;
         text-align: center;
         width: 90%;
         margin-left: 5%
     }
 
-    .table-routes td {
+    .table-routes,
+    .table-neighbor td {
         font-size: 12px;
     }
 
-    .btn-back{
+    .btn-back {
         padding: 6px 12px;
+    }
+
+    .btn-refresh {
+        position: absolute;
+        top: 20px;
+        left: 25px;
+        padding: 3px 6px;
+        background-color: #fff;
     }
