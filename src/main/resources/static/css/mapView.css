@@ -22,10 +22,91 @@
         background-color: white;
         height: 550px;
     }
+
     .separator {
         height: 50px;
     }
 
-    .locationName {
-        margin-top: 30px
+    .btn-search,
+    btn-searchRoute {
+        background: #424242;
+        border-radius: 0;
+        color: #fff;
+        border-width: 1px;
+        border-style: solid;
+        border-color: #1c1c1c;
+    }
+
+    .btn-search:link,
+    .btn-search:visited {
+        color: #fff;
+    }
+
+    .btn-search:active,
+    .btn-search:hover {
+        background: #1c1c1c;
+        color: #fff;
+    }
+
+    #searchPanel,
+    #routePanel {
+        margin-top: 15px
+    }
+
+    .btn-routes,
+    .btn-back {
+        color: #fff;
+        padding-top: 20px;
+    }
+
+    .btn-back {
+        margin-right: 5px
+    }
+
+    .btn-routes:hover,
+    .btn-back:hover {
+        color: #fff;
+    }
+
+    .searchForm {
+        margin-bottom: 30px
+    }
+
+    .error {
+        background-color: #fce4e4;
+        border: 1px solid #cc0033;
+        outline: none;
+    }
+
+    .table-routes-panel {
+        background-color: #fff;
+        width: 95%;
+        margin: 5% 0 0 2.5%;
+        height: 300px;
+        overflow: auto
+    }
+
+    .table-routes,
+    .table-neighbor {
+        color: #1c1c1c;
+        text-align: center;
+        width: 90%;
+        margin-left: 5%
+    }
+
+    .table-routes,
+    .table-neighbor td {
+        font-size: 12px;
+    }
+
+    .btn-back {
+        padding: 6px 12px;
+    }
+
+    .btn-refresh {
+        position: absolute;
+        top: 20px;
+        left: 25px;
+        padding: 3px 6px;
+        background-color: #fff;
     }
