@@ -7,12 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class WebController {
-	@GetMapping("/")
-    public String index(Model model){
-        model.addAttribute("title","Inicio");
-        return "index";
-    }
-    @RequestMapping("/westeros")
+
+    @RequestMapping("/")
     public String westerosView(Model model){
         model.addAttribute("title","Westeros");
         return "map";

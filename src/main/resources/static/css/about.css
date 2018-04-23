@@ -1,7 +1,12 @@
 #info {
 
-    margin-top: 10%;
+    margin-top: 17%;
     align-content: center;
-    background-color: #ffffff;
+    background-color: #343A40;
+
+}
+ h4, h3 {
+    text-align: center;
+    color: #ffffff;
 
 }
