@@ -9,7 +9,7 @@ window.onload = function () {
         }
     });
     $('.btn-routes').click(function () {
-        $('#location').val('')
+        $('#location').val('');
         $('.btn-refresh').removeClass('d-none');
         $('#searchPanel').addClass('d-none');
         $('.neighbor-panel').addClass('d-none');
@@ -19,9 +19,9 @@ window.onload = function () {
         getRoute();
     });
     $('.btn-back').click(function () {
-        $('#location').val('')
-        $('#startPoint').val('')
-        $('#destination').val('')
+        $('#location').val('');
+        $('#startPoint').val('');
+        $('#destination').val('');
         $('#startPoint').removeClass("error");
         $('.table-routes-panel').addClass("d-none");
         $('#destination').removeClass("error");
@@ -30,7 +30,7 @@ window.onload = function () {
         $('#routePanel').addClass('d-none');
         refreshConections();
         pathForm = false;
-        clearConections(conections.allRoutes)
+        clearConections(conections.allRoutes);
         getLocations();
     });
     $('.btn-search-route').click(function () {
@@ -51,13 +51,13 @@ function refreshRoutePanel() {
     $('#destination').removeClass("error");
 }
 function routeValidate() {
-    if ($('#destination').val() == '' && $('#startPoint').val() == '') {
+    if ($('#destination').val() === '' && $('#startPoint').val() === '') {
         $('#startPoint').addClass("error");
         return false;
-    } else if ($('#destination').val() == ''){
+    } else if ($('#destination').val() === ''){
         $('#destination').addClass("error");
         return false;
-    } else if ($('#startPoint').val() == '') {
+    } else if ($('#startPoint').val() === '') {
         $('#destination').addClass("error");
         $('#startPoint').addClass("error");
         return false;
@@ -82,7 +82,7 @@ function searchLocation(txtLocation) {
     $(".table-neighbor tbody").empty();
     $('.neighbor-panel').removeClass('d-none');
     $.ajax({
-        url: 'http://localhost:3377/routesLocation',
+        url: 'http://localhost:8080/routesLocation',
         type: 'POST',
         data: JSON.stringify({
             "name": txtLocation
@@ -103,7 +103,7 @@ function searchRoute(txtStartPoint,txtDestination) {
     $(".table-routes tbody").empty();
     $('.table-routes-panel').removeClass('d-none');
     $.ajax({
-        url: 'http://localhost:3377/shortestPath',
+        url: 'http://localhost:8080/shortestPath',
         type: 'POST',
         data: JSON.stringify([
             { "name": txtStartPoint }, { "name": txtDestination}

@@ -10,7 +10,7 @@ function fillMap(map) {
 function getLocations() {
     if (markers.length == 0) {
         $.ajax({
-            url: 'http://localhost:3377/allLocations',
+            url: 'http://localhost:8080/allLocations',
             data: {
                 format: 'json'
             },
@@ -73,7 +73,7 @@ function isLocationValid(txtOne, txtTwo) {
 function getRoute() {
     if (conections.allRoutes.length == 0) {
         $.ajax({
-            url: 'http://localhost:3377/allRoutes',
+            url: 'http://localhost:8080/allRoutes',
             data: {
                 format: 'json'
             },
@@ -125,14 +125,14 @@ function fillTable(value, table,path) {
 function getLocationName(data, path) {
     if (path) {
         console.log(currentLocation);
-        if (data.nameOne == currentLocation){
+        if (data.nameOne === currentLocation){
             currentLocation = data.nameTwo;
             return data.nameTwo;
         }
         currentLocation = data.nameOne;
         return data.nameOne;
     }
-    return data.nameOne == currentLocation ? data.nameTwo : data.nameOne;
+    return data.nameOne === currentLocation ? data.nameTwo : data.nameOne;
     
 }
 
@@ -147,7 +147,7 @@ function printPath(data) {
             var locTwo = new google.maps.LatLng(value.locationTwo.latitude, value.locationTwo.longitude);
             var line = locOne + ',' + locTwo;
 
-            if (conections.allRoutes[index].getPath().getArray().toString() == line) {
+            if (conections.allRoutes[index].getPath().getArray().toString() === line) {
                 conections.allRoutes[index].setOptions({ strokeColor: '#000', strokeWeight: 4 });
             }
         }
